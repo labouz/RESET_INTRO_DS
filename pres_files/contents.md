@@ -90,6 +90,8 @@ Main dplyr verbs:
 - `mutate`
 - `summarise`
 
+*Code Time!*
+
 
 
 ## The Unix Philosophy
@@ -140,15 +142,13 @@ An example:
 
 ## Plotting (cake first)
 
-📦: `ggplot2` :bar_chart:   
+📦: `ggplot2` 📊  
 📖: https://ggplot2.tidyverse.org/
 
 - Based on [Grammer of Graphics](https://amzn.to/2ef1eWp)
 - Components of the ggplot are combined with the `+` operator
 
 <img src="./img/ggplot2.png" width="200"/>
-
-<small>R Graphics Cookbook, 2018</small>
 
 
 ## Plotting (cake first, cont..)
@@ -159,6 +159,8 @@ Some Terminology:
 - Aesthetic attributes, or _aesthetics_, are visual properties of geoms, such as x and y position, line color, point shapes, etc
 - There are *mappings* from data values to aesthetics
 - _Scales_ control the mapping from the values in the data space to values in the aesthetic space. A continuous y scale maps larger numerical values to vertically higher positions in space
+
+<small>R Graphics Cookbook, 2018</small>
 
 
 
@@ -205,7 +207,7 @@ Tidy data:
 
 
 
-## EDA
+## 3. Transform/EDA
 
 What is EDA?
 
@@ -215,12 +217,45 @@ What is EDA?
 - State of mind
 - One of the most important steps of an anlysis
 
+Scroll down for some terminology and common types of plots for EDA :D
 
 
-## Analysis
+## 3.1 Terminology
+
+- *Variable* = quantity, quality, or property that you can measure
+- *Value* = state of a variable when you measure it
+- *Observation* = set of measurements made under similar conditions
+- *Variaton* = describes the behavior within a variable
+- *Covariation* = the tendency for the values of two or more variables to vary together in a related way
 
 
-## Communication
+## 3.2 Histograms
+"A histogram divides the x-axis into equally spaced bins and then uses the height of a bar to display the number of observations that fall in each bin"
+
+Great for examining the distribution of a continuous variable
+```r
+ggplot(diamonds) %>%
+  geom_histogram(mapping = aes(x = carat), binwidth = 0.5)
+```
+<img src="./img/hist_diamond1.png" width = 300>  
+
+<small>R For Data Science, 2018</small>
+
+
+## 3.3 Box Plots
+
+![](img/EDA-boxplot.png)
+
+<small>R For Data Science, 2018</small>
+
+
+## 3.4 Covariation Matrix
+
+
+## 4. Analysis
+
+
+## 5. Communicate
 
 
 
