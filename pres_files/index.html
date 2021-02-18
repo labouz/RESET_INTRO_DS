@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/robot-lung.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Introduction to Public Health Data Science</h2>
+					<h4>Using the R Programming Language</h4>
+					<p>
+						<medium>Layla Bouzoubaa</medium>
+						</br>
+						<small>University of Miami</small>
+						</br>
+						<small>March 06, 2021</small>
+					</p>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						## Introductions 🙋‍♀️
+
+						- Who am I?  
+						- Who are you?  
+						- Familiarity with R & RStudio 
+						- [Optional Workspace](https://rstudio.cloud/spaces/57167/join?access_code=cIFHPK3yt8TR%2FGfEgmoCbb7cxC4LEg%2FVQvVbTQzW)
+
+					</script>
+				</section>
+
+			
+				<section data-markdown="contents.md"
+					data-separator="^\n\n\n"
+					data-separator-vertical="^\n\n"
+					data-separator-notes="^Note:"
+					data-charset="iso-8859-15">
+				</section>
+
+			</div>
+			<!--divs for the robot-lung theme-->
+			<div class="line top"></div>
+			<div class="line bottom"></div>
+			<div class="line left"></div>
+			<div class="line right"></div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

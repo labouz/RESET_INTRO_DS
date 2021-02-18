@@ -1,0 +1,161 @@
+---
+title: "Introduction to Public Health Data Science Using R"
+author: "LB"
+date: "2021/03/06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Welcome to the Tidyverse
+```{r tv}
+install.packages("tidyverse", dependencies = TRUE)
+```
+
+It's a big one but this one set of packages is all we will need for the entirety of this workshop! :)
+
+### {dplyr}
+
+dplyr is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges.
+
+#### 1. `filter()`
+
+`filter()` does exactly what it sounds like. It filters your data down to only the *observations* you want to **keep**.
+```{r filter, message=FALSE, warning=FALSE}
+#load the data into a global enviroment
+data("mpg")
+#load the dplyr package
+library("dplyr")
+#`?mpg`
+
+#filter(dataObject, variableConditions) 
+filter(mpg, hwy >= 30)
+```
+
+Remember the `<-` operator. It would be a lot more helpful to store our new data so that we can use it later.
+
+```{r filter2}
+goodMPG <- filter(mpg, hwy >= 20)
+```
+
+Now *YOU* try it. Explore the `mpg` dataset and filter on a variable.. or two if you want to get fancy ;)
+
+```{r filter_you, eval=FALSE, message=FALSE, warning=FALSE}
+myData <- filter(mpg, [ADD YOUR CONDITION(S) HERE])
+#if you do want to filter on more than one condition, just separate by a comma. Commas are treated as AND.
+```
+
+#### 2. `select()`
+
+`select()` keeps all your observation but subsets the data down to only the *variables* you want to keep.
+
+Remeber the `%>%` operator? Let's say I want to keep the only the cars that get more than 20 MPG but I also don't want to create a new dataframe when I reduce it to only the variables I need? This is where the pipe comes in. It allows me to pass the results of one step into another function! It makes your code look more *elegant* and saves on *memory*!
+
+```{r select}
+goodMPG <- filter(mpg, hwy >= 30) %>% 
+  #feel free to replace these variable with your own set!
+  select(hwy, displ, year, cyl, cty, class) #tip: type ?mpg in the console to see more information on the dataset
+```
+
+#### 3. `mutate()`
+
+`mutate()` might be one of the most commonly used functions. This is the function that lets you create new variables!
+
+Lets create the combined gas mileage. A simple Google search told me that "Combined fuel economy is a weighted average of City and Highway MPG values that is calculated by weighting the City value by 55% and the Highway value by 45%". 
+
+```{r mutate}
+goodMPG <- filter(mpg, hwy >= 30) %>% 
+  select(class, displ, year, cyl, cty, hwy) %>% 
+  #remember to give your variables meaningful names that are short and consice
+  mutate(combined_mpg = round((.55*cty)+(.45*hwy)))
+```
+
+#### 4. `arrange()`
+
+`arrange()` arranges :) It orders the rows of a data frame by the values of selected columns.
+
+```{r arrange}
+goodMPG <- filter(mpg, hwy >= 30) %>% 
+  select(class, displ, year, cyl, cty, hwy) %>% 
+  mutate(combined_mpg = round((.55*cty)+(.45*hwy))) %>% 
+  #use the desc() to order in descending order, feel free to arrange in ascending!
+  arrange(desc(combined_mpg))
+```
+
+#### 5. `summarise()`
+
+`summarise()` is very fun function. It allows you to summarize your data based on some (or none) grouping variables. However, be mindful that summarize returns a different dataframe than the input. It will have one (or more) rows for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarizing all observations in the input.
+
+We will discuss how to implement grouping in a later step. 
+
+```{r summarise}
+# I want to save this as a separate object since I will likely need my tidy data later
+
+averageMPG <- filter(mpg, hwy >= 30) %>% 
+  select(class, displ, year, cyl, cty, hwy) %>% 
+  mutate(combined_mpg = round((.55*cty)+(.45*hwy))) %>% 
+  arrange(desc(combined_mpg)) %>% 
+  #take the average combined mpg of all cars that get >= 30 MPG
+  summarise(avg_combined = mean(combined_mpg))
+```
+
+*Q1:Run the above code chunk. What does this step return? Why?*
+
+## Let's Plot!
+
+One of the most powerful functions in the tidyverse is `ggplot2`. You can create beautiful plots with just one package! 
+A few notes about `ggplot()`  
+- `ggplot()` is designed to work with data frames as the data source, not individual vectors.  
+- Internal syntax that is different from the tidyverse.  
+- You can add as many layers to a plot. Here is a typical template:
+
+```{r ggplot, eval=FALSE}
+ggplot(data = <DATA>) + 
+  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+```
+
+Now let's try it.
+
+```{r bar_plot, echo=FALSE}
+#load the library
+library(ggplot2)
+
+#Geoms are added to your plot using `+` sign BUT you can pipe into ggplot.
+## let's start with a simple bar plot looking at difference in cylinders
+goodMPG %>% 
+  ggplot(aes(x = class)) +
+  geom_bar()
+
+#now let's look at the difference between cyl and mpg
+goodMPG %>% 
+  ggplot(aes(x = class, y = combined_mpg)) +
+  geom_col()
+```
+
+*Q2: What is happening in this second plot? Take a minute to think about why this plot is not what you would expect? (hint: try typing `?geom_col` and `?geom_bar` in the console to understand the differences between these two functions)*
+
+____________________________
+## Our Data! 
+
+Now that we've got some basics of R and the Tidyverse covered. Let's actually work with some real health data and apply these principals as data scientists do!
+
+### 1. Import
+```{r import, message=FALSE, warning=FALSE}
+library(readr)
+#important to use RELATIVE PATHS not ABSOLUTE
+fetal <- read_csv("./data/fetal_health.csv")
+
+str(fetal)
+```
+
+*Q3: What do you think `str()` does? What can we say about this data? What are our variable classes? What is our N?*
+
+### 2. Tidy
+
+*Q4: Given what we know about the principals of tidy data, is our data tidy?*
+
+### 3. Transform
+Before we can even begin this step, what are we missing? A research question!
+Yes, it is possible to perform non-hypothesis driven analyses but for the purposes of this workshop, it would be more helpful to have a hypothesis.  
