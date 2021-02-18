@@ -44,3 +44,6 @@ pres_files/dist/
 pres_files/.DS_Store
 
 ./pres_files/node_modules/
+node_modules/
+
+*.Rproj

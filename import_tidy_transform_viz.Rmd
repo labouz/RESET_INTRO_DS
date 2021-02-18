@@ -156,6 +156,78 @@ str(fetal)
 
 *Q4: Given what we know about the principals of tidy data, is our data tidy?*
 
-### 3. Transform
-Before we can even begin this step, what are we missing? A research question!
-Yes, it is possible to perform non-hypothesis driven analyses but for the purposes of this workshop, it would be more helpful to have a hypothesis.  
+Here are some steps to help us figure it out:  
+1. The first step is always to figure out what the variables and observations are  
+2. Resolve one of two common problems:
+  1. One variable might be spread across multiple columns.  
+  2. One observation might be scattered across multiple rows.
+
+### 3. Transform/EDA
+
+It is important to learn your data first. You don't necessarily need to already have the research question ready. What we do know from reading the background of this study is that investigators were particularly interested in classifying fetal health. The investigators have already done this classification but let's see what else we can discover about our data. 
+
+For reference:  
+1 (Normal), 2 (Suspect) and 3 (Pathological)  
+
+```{r fetal_health}
+#bar plots are good for categorical/discrete variables, what about continuous?
+ggplot(data = fetal) +
+  geom_bar(mapping = aes(x = fetal_health))
+```
+```{r fetal_health2}
+#histograms are a good way of examining a disribution of a variable
+ggplot(data = fetal) +
+  geom_histogram(mapping = aes(x = `baseline value`), binwidth = 0.5)
+```
+
+The distribution of the fetal heart rate(FHR bpm) does not appear to be skewed and from what we know about FHR is the typical range is between 110-160 (see `data/readme.md`).
+
+By looking at the min and max of baseline, I would not necessarily say they are outliers so no need to do any trimming.
+```{r}
+min(fetal$`baseline value`) #106
+max(fetal$`baseline value`) #160
+
+#what is the mean? what is the median? There is a good function for a summary of 
+## continuous variables :)
+
+summary(fetal$`baseline value`) #median is about 133 bpm
+```
+Now let's look at the distributions of all variables. All variables are continuous so a histogram would be appropriate but we are not going to copy and paste the above code 22 times.  
+
+The `tidyr` package allows us to *transform* a data frame from *wide* format with one record per observation to *long* format with repeated measures in separate records. You'll see in a second why this helpful to us.
+
+```{r fetal_facet}
+library(tidyr)
+# pivot_longer transforms data from a wide to long format, you must specify which columns
+## you want to pivot or you can simply use the everything() functions from the tidyselect pkg!
+fetal_long <- pivot_longer(data = fetal, cols = everything())
+
+ggplot(fetal_long, aes(x = value)) + 
+  facet_wrap(~name, scales = 'free') +
+   geom_histogram()
+```
+
+
+What can we observe from these variables?
+
+One way we can visualize the spread of a variable is with boxplots. Each boxplot consists of:  
+- Inter Quartile Range (IQR) = A box that stretches from the 25th percentile of the distribution to the 75th  
+- Outliers = Visual points that display observations that fall more than 1.5 times the IQR  
+- Whiskers = A line that extends from each end of the box and goes to the
+farthest non-outlier point in the distribution
+
+```{r boxplots}
+ggplot(fetal_long, aes(x = value)) + 
+  facet_wrap(~name, scales = 'free') +
+   geom_boxplot() +
+  coord_flip()
+```
+
+
+How does `Number of fetal movements per second` compare with `Number of uterine contractions per second`?
+
+```{r}
+ggplot(data = fetal, mapping = aes(x = fetal_movement, y = uterine_contractions)) + 
+  geom_point()
+```
+
