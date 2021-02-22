@@ -123,7 +123,7 @@ Basically...
 
 An example:
 
-```r
+```r[1|2|3|4]
 # Name Vars -------------------------
   my_var
   var_1
@@ -181,17 +181,41 @@ Take data stored in a file, database, or web application programming interface (
 🔮: Files from other statistical software (SAS, SPSS, STATA etc)
 
 
-## 1. Import Data (cont..)
+## 1.1 Our Data 
 
+##### *Hypothesis*
+
+Places within Miami-Dade County with higher income have lower percentages of food stamp recipients
 ##### _Our Data_
 
-Fetal Health Cardiotocograms (CTGs) records.
+ACS Supplemental Nutrition Assistance Program (SNAP) benefits 2019 5-year estimates
+##### *Source*
 
-##### _Background_
+[American Community Survey (ACS) data from the U.S. Census Bureau](data.census.gov)  
+TableID: S2201
 
-Reduction of child mortality is a key indicator of human progress. The UN expects that by 2030, countries will reduce 'under 5' mortality to at least as low as 25 per 1,000 live births. Maternal mortality accounts for about 295k deaths as of 2017, 95% of which are preventable. Cardiotocograms (CTGs) are a simple and cost accessible option to assess fetal health, allowing healthcare professionals to take action in order to prevent child and maternal mortality.
+##### *Geography*
 
-<small>Ayres de Campos et al. (2000) SisPorto 2.0 A Program for Automated Analysis of Cardiotocograms. J Matern Fetal Med 5:311-318</small>
+Census Designated Places (CDP's) in Miami-Dade County
+
+
+## 1.2 `{tidycensus}`
+
+What is `{tidycensus}`?   
+"an R package that allows users to interface with the US Census Bureau’s decennial Census and five-year American Community *APIs* and return tidyverse-ready data frame"  
+More info: https://walker-data.com/tidycensus/index.html
+#### **A**pplication **P**rogram **I**nterface  
+
+allows a user to programatically pull data from a source given that source provides one  
+*ex. The NYT, Twitter, Facebook, Google, US Census*
+
+#### How Does it Work? 
+
+Think of it like this, just like a Graphical User Interface (GUI) allows you to interact with your code, an API lets your code interact with other code 
+
+<img src = "img/api_call.png" width = 250>  
+
+###### DO NOT SHARE/PUBLISH YOUR API KEY!! ☠️
 
 
 
@@ -249,15 +273,32 @@ ggplot(diamonds) %>%
 <small>R For Data Science, 2018</small>
 
 
-## 3.4 Covariation Matrix
+## 3.4 Correlation Matrix
+
+*What is correlation?*  
+The correlation metric tells us how much one variable changes with a slight change in another variable.
+
+A high correlation value between a dependent variable and an independent variable indicates that the independent variable is of very high significance in determining the output
+
+*It is a good method of feature engineering/selection for machine learning*
+
+<img src="img/corr_matrix.png" width=300>
 
 
-## 4. Analysis
 
+## 4. Analysis/Model
 
+Some useful terminology:  
+
+- *log transform*: replace each variable `x` with a `log(x)`. Doing so usually helps skewed data become less skewed. It can also help make patterns more visible
+- *linear regression*: finding the best-fitting straight line through the points. The best-fitting line is called a *regression line.*
+```r
+lm(dependantVar ~ independentVar, data = df)
+```
+- *p-value*: evidence against a null hypothesis. The smaller the p-value, the stronger the evidence that you should reject the null hypothesis.
 ## 5. Communicate
 
-
+<img src="img/rmd_knitr.jpeg" width=300>
 
 ## Resources
 
