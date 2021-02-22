@@ -119,7 +119,7 @@ Basically...
   - Generally, variable names = nouns, function names = verbs
 
 
-## The Unix Philosophy (cont..)
+## Tidyverse Style
 
 An example:
 
@@ -191,8 +191,7 @@ Places within Miami-Dade County with higher income have lower percentages of foo
 ACS Supplemental Nutrition Assistance Program (SNAP) benefits 2019 5-year estimates
 ##### *Source*
 
-[American Community Survey (ACS) data from the U.S. Census Bureau](data.census.gov)  
-TableID: S2201
+[American Community Survey (ACS) data from the U.S. Census Bureau](data.census.gov)  - TableID: S2201
 
 ##### *Geography*
 
@@ -201,21 +200,22 @@ Census Designated Places (CDP's) in Miami-Dade County
 
 ## 1.2 `{tidycensus}`
 
-What is `{tidycensus}`?   
-"an R package that allows users to interface with the US Census Bureau’s decennial Census and five-year American Community *APIs* and return tidyverse-ready data frame"  
-More info: https://walker-data.com/tidycensus/index.html
-#### **A**pplication **P**rogram **I**nterface  
+What is[ `{tidycensus}`](https://walker-data.com/tidycensus/index.html)?   
+> an R package that allows users to interface with the US Census Bureau's decennial Census and five-year American Community *APIs* and return tidyverse-ready data frame.
+
+ **A**pplication **P**rogram **I**nterface  
 
 allows a user to programatically pull data from a source given that source provides one  
 *ex. The NYT, Twitter, Facebook, Google, US Census*
 
-#### How Does it Work? 
+
+#### 1.2.1 How Do APIs Work? 
 
 Think of it like this, just like a Graphical User Interface (GUI) allows you to interact with your code, an API lets your code interact with other code 
 
-<img src = "img/api_call.png" width = 250>  
+<img src = "img/api_call.png" width = 600>  
 
-###### DO NOT SHARE/PUBLISH YOUR API KEY!! ☠️
+<medium> DO NOT SHARE/PUBLISH YOUR API KEY!! </medium>
 
 
 
@@ -275,12 +275,10 @@ ggplot(diamonds) %>%
 
 ## 3.4 Correlation Matrix
 
-*What is correlation?*  
-The correlation metric tells us how much one variable changes with a slight change in another variable.
+*What is correlation?* 
 
-A high correlation value between a dependent variable and an independent variable indicates that the independent variable is of very high significance in determining the output
-
-*It is a good method of feature engineering/selection for machine learning*
+- The correlation metric tells us how much one variable changes with a slight change in another variable.
+- A high correlation value between a dependent variable and an independent variable indicates that the independent variable is of very high significance in determining the output
 
 <img src="img/corr_matrix.png" width=300>
 
@@ -290,15 +288,21 @@ A high correlation value between a dependent variable and an independent variabl
 
 Some useful terminology:  
 
-- *log transform*: replace each variable `x` with a `log(x)`. Doing so usually helps skewed data become less skewed. It can also help make patterns more visible
-- *linear regression*: finding the best-fitting straight line through the points. The best-fitting line is called a *regression line.*
+- *log transform* : replace each variable `x` with a `log(x)`. Doing so usually helps skewed data become less skewed. It can also help make patterns more visible
+- *linear regression* : finding the best-fitting straight line through the points. The best-fitting line is called a *regression line.*
+  
 ```r
 lm(dependantVar ~ independentVar, data = df)
 ```
 - *p-value*: evidence against a null hypothesis. The smaller the p-value, the stronger the evidence that you should reject the null hypothesis.
+
+
+
 ## 5. Communicate
 
 <img src="img/rmd_knitr.jpeg" width=300>
+
+
 
 ## Resources
 
