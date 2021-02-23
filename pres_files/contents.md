@@ -90,7 +90,7 @@ Main dplyr verbs:
 - `mutate`
 - `summarise`
 
-*Code Time!*
+*Code Time!* &#x1F57A;
 
 
 
@@ -142,8 +142,8 @@ An example:
 
 ## Plotting (cake first)
 
-📦: `ggplot2` 📊  
-📖: https://ggplot2.tidyverse.org/
+&#x1F4E6; : `ggplot2` &#x1F4CA;  
+&#x1F4D6; : https://ggplot2.tidyverse.org/
 
 - Based on [Grammer of Graphics](https://amzn.to/2ef1eWp)
 - Components of the ggplot are combined with the `+` operator
@@ -168,17 +168,17 @@ Some Terminology:
 
 Take data stored in a file, database, or web application programming interface (API), and load it into a data frame in R.  
 **Some useful packages:**  
-📦: `readr`  
-📖: https://readr.tidyverse.org/  
-🔮: Rectangular data (.csv, .tsv, etc)
+&#x1F4E6; : `readr`  
+&#x1F4D6; : https://readr.tidyverse.org/  
+&#x1F680; : Rectangular data (.csv, .tsv, etc)
 
-📦: `readxl`  
-📖: https://readxl.tidyverse.org/  
-🔮: Excel files (.xls, .xlsx, etc)
+&#x1F4E6; : `readxl`  
+&#x1F4D6; : https://readxl.tidyverse.org/  
+&#x1F680; Excel files (.xls, .xlsx, etc)
 
-📦: `haven`  
-📖: https://haven.tidyverse.org/  
-🔮: Files from other statistical software (SAS, SPSS, STATA etc)
+&#x1F4E6; : `haven`  
+&#x1F4D6; : https://haven.tidyverse.org/  
+&#x1F680; Files from other statistical software (SAS, SPSS, STATA etc)
 
 
 ## 1.1 Our Data 
