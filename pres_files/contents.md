@@ -81,7 +81,8 @@ Base R:
 
 ## Tidyverse `{dplyr}`
 
-**Design for humans!!** :D  
+[**Design for humans!!**](https://design.tidyverse.org/unifying-principles.html#human-centered) 	&#x1F98A;
+
 Main dplyr verbs:
 
 - `filter`
