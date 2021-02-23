@@ -195,7 +195,7 @@ ACS Supplemental Nutrition Assistance Program (SNAP) benefits 2019 5-year estima
 
 ##### *Geography*
 
-Census Designated Places (CDP's) in Miami-Dade County
+Census tracts in Miami-Dade County
 
 
 ## 1.2 `{tidycensus}`
