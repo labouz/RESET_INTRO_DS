@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Welcome to the Tidyverse
 ```{r tv}
-install.packages("tidyverse", dependencies = TRUE)
+# install.packages("tidyverse", dependencies = TRUE)
 ```
 
 It's a big one but this one set of packages is all we will need for the entirety of this workshop! :)
@@ -24,10 +24,10 @@ dplyr is a grammar of data manipulation, providing a consistent set of verbs tha
 
 `filter()` does exactly what it sounds like. It filters your data down to only the *observations* you want to **keep**.
 ```{r filter, message=FALSE, warning=FALSE}
-#load the data into a global enviroment
-data("mpg")
 #load the dplyr package
-library("dplyr")
+library("tidyverse")
+#load the data into the global environment
+data("mpg")
 #`?mpg`
 
 #filter(dataObject, variableConditions) 
@@ -167,7 +167,8 @@ goodMPG %>%
 ```
 
 *Q2.1: Play around with the values of binwidth. What can we determine from this graph?*
-____________________________
+
+___
 ## Our Data! 
 
 Now that we've got some basics of R and the Tidyverse covered. Let's actually work with some real health data and apply these principals as data scientists do!
@@ -177,7 +178,7 @@ Now that we've got some basics of R and the Tidyverse covered. Let's actually wo
 # install.packages("tidycensus")
 library(tidycensus)
 
-#store your ACTIVATED API key into R
+# store your ACTIVATED API key into R
 # census_api_key("YOUR API KEY GOES HERE")
 
 # look at the package website to get a list of supported geographies
@@ -236,7 +237,8 @@ v19_snap <- v19 %>%
 
 Let's look at the resulting data frame for a variable that tells us the proportion of people on food stamps  
 Let's use the RStudio GUI this time. By filtering the `v19_snap` "label" variable for "food stamp", we see that it's variable `S2201_C04_001` that we want. This is the percent households receiving food stamps.
-Now, do the same for income. 
+Now, do the same for income.   
+
 *Q5: Which variable give us the household income in the past 12 months?*
 
 ```{r filter_snap}
@@ -324,6 +326,7 @@ library(corrplot)
 
 corrplot(snap_cor)
 ```
+
 *Q7: Does this justify the trends we saw earlier?*
 
 ### 4. Analyze
@@ -366,7 +369,7 @@ This entire analysis was written in an R flavored version of Markdown called [R 
 For some bonus points, let's visualize the distribution of those on food stamps geographically.
 One of the awesome things about the `{tidycensus}` package is that you can also pull the geographic attributes (lats/longs) so they can be used in conjunction with mapping tools!
 
-```{r map, message=FALSE, warning=FALSE}
+```{r get_map, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
 snap_food <- get_acs(geography = "tract", 
                      state = 12, 
                      county = 86, 
@@ -376,8 +379,10 @@ snap_food <- get_acs(geography = "tract",
                      # we can also rename it in the API call!
                      variables = c(p_food_stamp = "S2201_C04_001"), 
                      geometry = TRUE)
+```
 
-# install.packages("mapview", dependencies = TRUE)
+```{r map}
+# remotes::install_github("r-spatial/mapview")
 library(mapview)
 
 snap_food %>% 
