@@ -47,3 +47,6 @@ pres_files/.DS_Store
 node_modules/
 
 *.Rproj
+
+ignore_me/
+pres_files/screenshots/

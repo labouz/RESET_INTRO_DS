@@ -95,5 +95,9 @@
       "no-eq-null": 2,
       "no-unused-expressions": 0
     }
+  },
+  "dependencies": {
+    "decktape": "^3.1.0",
+    "puppeteer": "^8.0.0"
   }
 }
