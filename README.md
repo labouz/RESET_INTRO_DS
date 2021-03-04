@@ -7,7 +7,7 @@ This workshop will employ computational data science techniques covering the fir
 3. Trasnformation 
 4. Visualization/Communication 
 
-Attendees will be presented with healthcare data apply the taught methodologies to solve a representative problem. This workshop will use the R programming language with a major emphasis on the libraries within the Tidyverse. A keen understanding of functional programming languages and/or R is recommended but not required. The goal of the workshop is to give attendees the opportunity to deploy a near complete data science pipeline. This workshop is part #1 of two-part sequence. Introduction to Machine Learning in Healthcare focuses on the 5th step of the pipeline, Learning & Optimization.
+Attendees will be presented with healthcare data apply the taught methodologies to solve a representative problem. This workshop will use the R programming language with a major emphasis on the libraries within the Tidyverse. A keen understanding of functional programming languages and/or R is recommended but not required. The goal of the workshop is to give attendees the opportunity to deploy a near complete data science pipeline. 
 
 What you will need:  
 
