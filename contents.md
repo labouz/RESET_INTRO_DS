@@ -309,6 +309,7 @@ lm(dependantVar ~ independentVar, data = df)
 
 [R For Data Science](https://r4ds.had.co.nz/) : comprehensive guide to doing data science with R  
 [Tidyverse Style Guide](https://style.tidyverse.org/) : how to make sure your code is elegant and redeable for optimal reproducibility  
+[What is the Tidyverse?](https://rviews.rstudio.com/2017/06/08/what-is-the-tidyverse/#:~:text=The%20advantages%20of%20the%20tidyverse,the%20possibility%20of%20greater%20productivity.) : a nice blog post on the basics of the TV
 [RStudio Cheetsheets](https://rstudio.com/resources/cheatsheets/) : who doesn't love a cheatsheet?  
 [Unix Design Principle](https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html) : general programming best practices  
 [R Graphics Cookbook](https://r-graphics.org/) : Up your `ggplot2` game with recipes for several types of plots
